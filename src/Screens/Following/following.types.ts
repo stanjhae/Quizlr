@@ -3,7 +3,7 @@ type User = {
   avatar?: string
 }
 
-type Following = {
+export type Following = {
   description?: string
   answer?: string
   playlist?: string
@@ -12,6 +12,6 @@ type Following = {
   user?: User
 }
 
-type FollowingStoreType = {
+export type FollowingStoreType = {
   following: Following[]
 }

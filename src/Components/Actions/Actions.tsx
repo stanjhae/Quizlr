@@ -21,7 +21,7 @@ const Actions: FC<{item?: Action}> = ({item = {}}) => {
         <Text style={styles.actionDetails}>2</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.container}>
-        <Image style={styles.image} source={{uri: 'bookmarks'}} />
+        <Image style={styles.image} source={{uri: 'bookmark'}} />
         <Text style={styles.actionDetails}>2</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.container}>

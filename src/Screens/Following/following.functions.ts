@@ -1,4 +1,4 @@
-import followingStore from './Following/following.store'
+import followingStore from './following.store'
 import {apiRequest} from '../../utils/apiRequest'
 
 const getFollowingData = async () => {
@@ -8,7 +8,6 @@ const getFollowingData = async () => {
     })
 
     if (data) {
-      console.log(data)
       followingStore.following = [...followingStore.following, data]
     }
   } catch (e) {
