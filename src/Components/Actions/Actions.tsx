@@ -1,37 +1,64 @@
-import {Text, View} from 'react-native'
-import React from 'react'
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import React, {FC} from 'react'
+import {Action} from './actions.types'
 
-const Actions = () => {
+const Actions: FC<{item?: Action}> = ({item = {}}) => {
   return (
-    <View
-      style={{
-        position: 'absolute',
-        width: '100%',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        bottom: 30,
-        gap: 15,
-      }}>
-      <View>
-        <Text>Avatar</Text>
-      </View>
-      <View>
-        <Text>Likes</Text>
-      </View>
-      <View>
-        <Text>Comments</Text>
-      </View>
-      <View>
-        <Text>Share</Text>
-      </View>
-      <View>
-        <Text>Bookmark</Text>
-      </View>
-      <View>
-        <Text>Flip</Text>
-      </View>
+    <View style={styles.outerContainer}>
+      <TouchableOpacity>
+        <Image style={styles.avatar} source={{uri: item.avatar}} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container}>
+        <Image style={styles.image} source={{uri: 'heart'}} />
+        <Text style={styles.actionDetails}>87</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container}>
+        <Image style={styles.image} source={{uri: 'comment'}} />
+        <Text style={styles.actionDetails}>2</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container}>
+        <Image style={styles.image} source={{uri: 'share'}} />
+        <Text style={styles.actionDetails}>2</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container}>
+        <Image style={styles.image} source={{uri: 'bookmarks'}} />
+        <Text style={styles.actionDetails}>2</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.container}>
+        <Image style={styles.image} source={{uri: 'flip'}} />
+        <Text style={styles.actionDetails}>Flip</Text>
+      </TouchableOpacity>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {alignItems: 'center', justifyContent: 'center'},
+  outerContainer: {
+    position: 'absolute',
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    bottom: 60,
+    gap: 15,
+  },
+  image: {
+    width: 35,
+    height: 35,
+    marginBottom: 5,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#fff',
+    borderRadius: 25,
+    marginBottom: 10,
+  },
+  actionDetails: {
+    color: '#fff',
+    fontSize: 12,
+  },
+})
 
 export default Actions

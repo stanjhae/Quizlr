@@ -8,6 +8,7 @@
 import React from 'react'
 import type {PropsWithChildren} from 'react'
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -67,7 +68,7 @@ function Section({children, title}: SectionProps): JSX.Element {
 function ForYou() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home!</Text>
+      <Text>For you!</Text>
     </View>
   )
 }
@@ -102,7 +103,31 @@ function App(): JSX.Element {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={({route}) => {
+            console.log(route.name)
+            return {
+              tabBarStyle: {
+                // width: windowWidth,
+                backgroundColor: 'black',
+              },
+              tabBarShowLabel: false,
+              tabBarInactiveTintColor: 'white',
+
+              tabBarIcon: () => (
+                <View style={{alignItems: 'center', paddingTop: 10}}>
+                  <Image
+                    style={{width: 25, height: 25}}
+                    source={{uri: route.name.toLowerCase()}}
+                  />
+                  <Text style={{fontSize: 12, color: '#fff', marginTop: 5}}>
+                    {route.name}
+                  </Text>
+                </View>
+              ),
+              tabBarAccessibilityLabel: route.name,
+            }
+          }}>
           <Tab.Screen
             options={{headerShown: false}}
             name="Home"

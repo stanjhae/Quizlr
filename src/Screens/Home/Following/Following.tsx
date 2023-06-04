@@ -4,6 +4,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native'
@@ -16,6 +17,9 @@ import User from '../../../Components/User/User'
 import Description from '../../../Components/Description/Description'
 import Footer from '../../../Components/Footer/Footer'
 import Answer from '../../../Components/Answer/Answer'
+import Divider from '../../../Components/Divider/Divider'
+import Feedback from '../../../Components/Feedback/Feedback'
+import Playlist from '../../../Components/Playlist/Playlist'
 
 const Following: FC = () => {
   const {following} = followingStore
@@ -41,14 +45,32 @@ const Following: FC = () => {
         renderItem={({item}) => {
           return (
             <TouchableWithoutFeedback onPress={onPress}>
-              <View style={styles.innerContainer}>
-                <Actions />
-                <Text style={styles.text}>{item?.flashcard_front}</Text>
-                {showAnswer && <Answer answer={item?.flashcard_back} />}
+              <View
+                style={[
+                  styles.innerContainer,
+                  {justifyContent: showAnswer ? 'flex-start' : 'center'},
+                ]}>
+                <Actions item={{avatar: item.user?.avatar}} />
+
+                <View style={{width: windowWidth * 0.75}}>
+                  <Text style={styles.text}>{item?.flashcard_front}</Text>
+                </View>
                 <Footer>
                   <>
-                    <User user={item?.user} />
-                    <Description description={item?.description} />
+                    <View style={{width: windowWidth * 0.75, padding: 16}}>
+                      {showAnswer && (
+                        <>
+                          <Divider />
+                          <Answer answer={item?.flashcard_back} />
+                        </>
+                      )}
+                      {showAnswer && <Feedback />}
+                    </View>
+                    <TouchableOpacity style={{padding: 10}}>
+                      <User user={item?.user} />
+                      <Description description={item?.description} />
+                    </TouchableOpacity>
+                    <Playlist details={item?.playlist} />
                   </>
                 </Footer>
               </View>
@@ -74,8 +96,8 @@ const styles = StyleSheet.create({
   innerContainer: {
     flex: 1,
     padding: 16,
+    paddingRight: 0,
     backgroundColor: '#00425A',
-    justifyContent: 'center',
     height: windowHeight * 0.79,
   },
   imageContent: {

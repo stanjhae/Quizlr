@@ -8,9 +8,9 @@ const Footer: FC<{children: ReactElement}> = ({children}) => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 0,
     alignSelf: 'flex-start',
-    padding: 16,
+    // padding: 16,
   },
 })
 
